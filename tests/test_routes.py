@@ -143,7 +143,7 @@ class TestAccountService(TestCase):
         data = resp.get_json()
         self.assertEqual(data["name"], account.name)
 
-    #Test case: update Account
+    # Test case: update Account
     def test_update_account(self):
         """It should Update an existing Account"""
         # create an Account to update
@@ -159,20 +159,20 @@ class TestAccountService(TestCase):
         updated_account = resp.get_json()
         self.assertEqual(updated_account["name"], "Something Known")
 
-    #Test case: delete Account
+    # Test case: delete Account
     def test_delete_account(self):
         """It should Delete an Account"""
         account = self._create_accounts(1)[0]
         resp = self.client.delete(f"{BASE_URL}/{account.id}")
-        self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)  
+        self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
 
-    #Test case: Account not found
+    # Test case: Account not found
     def test_get_account_not_found(self):
         """It should not Read an Account that is not found"""
         resp = self.client.get(f"{BASE_URL}/0")
-        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)  
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
-    #Test case: method not allowed
+    # Test case: method not allowed
     def test_method_not_allowed(self):
         """It should not allow an illegal method call"""
         resp = self.client.delete(BASE_URL)
